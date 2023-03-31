@@ -21,3 +21,17 @@ Route::get('/hello', function () {
     $data = [        'message' => 'Hello, World!'    ];
     return response()->json($data);
 });
+Route::get('/example', function () {
+    return response()->json([        'message' => 'This is an example API response',        'data' => [            'name' => 'John Doe',            'email' => 'johndoe@example.com',            'age' => 30,        ],
+    ]);
+});
+Route::get('/db-check', function () {
+    try {
+        DB::connection()->getPdo();
+        return response()->json(['message' => 'Database connection established.']);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Database connection failed.']);
+    }
+});
+
+
